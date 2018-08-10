@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-
+//////CODIGO ATT
 public class responder : MonoBehaviour
 {
     public GameObject btnAvancar;
@@ -46,9 +46,9 @@ public class responder : MonoBehaviour
         idFase = 0;
         txtFase.text = "Fase " + (idFase+1);
 
-       btnAvancar.SetActive(false);
+       btnAvancar.SetActive(false); //Button avanças está invísivel no inicio 
 
-        correta1 = false;
+        correta1 = false; 
         correta2 = false;
         posicaoE = false;
         txt1 = false;
@@ -68,15 +68,18 @@ public class responder : MonoBehaviour
 
     public void clique(string alternativa)
     {
+    	//Esse método foi feito pensando o seguinte: O Usuário pode clicar na alternativa A por exemplo, 
+    	//para tentar adivinhar o primeiro número escondido. Ou pode clicar na alternativa A para adivinhar
+    	//o segundo número escondido, assim foi feito com todas as alternativas, pensando nessas duas possibilidades.
 
-        if (alternativa == "A") //alternativa clicadao = A
+        if (alternativa == "A") //alternativa clicada foi a 'A'
         {
             if (txt1 == false) //textx1 está vazio
             {
 
                 textX1.text = alternativaA[idFase]; // preenche textX1 com o numero da alternativa A
-                txt1 = true;
-                if (alternativaA[idFase] == corretaN1[idFase]) //compara a alternativa A com o número escondido
+                txt1 = true; //txt1 recebe true pois o textX1 não está mais vazio
+                if (alternativaA[idFase] == corretaN1[idFase]) //compara a alternativa A com o primeiro número escondido
                 {
 
 
@@ -84,8 +87,8 @@ public class responder : MonoBehaviour
 
 
                 }
-               if (alternativaA[idFase] == corretaN2[idFase]) //alternativaA é igual ao segundo número escondido, sendo assim a posição está incorreta
-                {
+               if (alternativaA[idFase] == corretaN2[idFase]) //alternativaA é igual ao segundo número escondido
+                {  //sendo assim a posição está incorreta
 
 
                     posicaoE = true; //posição errada recebe true
@@ -104,13 +107,15 @@ public class responder : MonoBehaviour
 
                     correta2 = true; 
 
-                    if (correta1 == true)  //correta2 já recebeu true no if acima. Já este if compara se o primeiro número a ser adivinhado já foi acertado.
-                    {
+                    if (correta1 == true)  //correta2 já recebeu true no if acima. Então este if compara se o primeiro número a ser adivinhado                   
+                    {//já foi acertado.
+
                         infoResposta.text = "Você acertou";
-                        btnAvancar.SetActive(true);
+                        btnAvancar.SetActive(true); //button avançar fica vísivel
                     }
-                    else if (posicaoE == true) //se o número n1 não foi acertado antes de dar as resposta como errada ele compara se a posição errada recebeu true.
-                    {
+                    else if (posicaoE == true) //se o número n1 não foi acertado antes de dar 
+                    {                         //a resposta como errada ele compara se a posição errada recebeu true, se sim, quer dizer
+                    	                      //que o usuário acertou um número, porém na posição errada.
                         infoResposta.text = "Meio certo";
                     }
 
@@ -119,21 +124,21 @@ public class responder : MonoBehaviour
 
 
                 }
-                else if (alternativaA[idFase] == corretaN1[idFase])
-                {
+                else if (alternativaA[idFase] == corretaN1[idFase]) //se Alternativa A = corretaN1 -> posição errada recebe true
+                {                                                   //pois o número1 já foi preenchido(tendo a possibilidade de estar errado ou não)
                     posicaoE = true;
                     infoResposta.text = "Meio certo";
 
                 }
 
-                else if (alternativaA[idFase] != corretaN2[idFase])
+                else if (alternativaA[idFase] != corretaN2[idFase])  //se alternativa A não for igual ao segundo número escondido
                 {
 
-                    if (correta1 == true)
+                    if (correta1 == true) //se o usuário acertou pelo menos o primeiro número escondido 
                     {
                         infoResposta.text = "Meio certo";
                     }
-                    else if (posicaoE == true)
+                    else if (posicaoE == true) // se o usuário acertou qualquer um dos dois, porém na posição errada
                     {
                         infoResposta.text = "Meio certo";
                     }
