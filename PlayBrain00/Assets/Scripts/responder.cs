@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-//////CODIGO ATT
+//////CODIGO ATT 0101
 public class responder : MonoBehaviour
 {
     public GameObject btnAvancar;
